@@ -1,19 +1,43 @@
 <html>
 <head>
     <title>Vue js Task 1</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+<div class="nav-bar"></div>
 <div id="app">
-    {{ message }}
+    <div class="product">
+        <div class="product-image">
+            <img :src="image" alt=""/>
+        </div>
+        <div class="product-info">
+            <h1>{{title}}</h1>
+            <p v-if="inStock">In Stock</p>
+            <p v-else>Out of Stock</p>
+            <ul>
+                <li v-for="detail in details">
+                    {{detail}}
+                </li>
+            </ul>
+            <div v-for="(variant,index) in variants"
+                 class="color-box"
+                 :key="variant.variantId"
+                 :style="{backgroundColor:variant.variantColor}"
+                 @mouseover="updateVariantImage(index)"
+            >
+            </div>
+            <button @click="addToCart" :disabled="!inStock">Add to Cart</button>
+            <div class="cart">
+                <p>{{cart}}</p>
+            </div>
+        </div>
+
+
+    </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="main.js"></script>
 </body>
 </html>
-<script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue!'
-        }
-    })
-</script>
+
