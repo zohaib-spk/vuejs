@@ -7,7 +7,25 @@
 <body>
 <div class="nav-bar"></div>
 <div id="app">
-    <div class="product">
+    <div class="products" style="width: 30%;border: 1px solid black;float: left;">
+        <p @mouseover="selectProduct(index)" v-for="(product,index) in products" style="background: lightblue">{{ product.name }}
+        </p>
+    </div>
+    <div class="products" style="float: left;width: 30%;border: 1px solid black;background: lightgreen">
+        <h3>{{selectedProduct.name}}</h3>
+        <p v-for="detail in selectedProduct.details.value">
+            {{ detail }}
+        </p>
+        <p
+                :style="{backgroundColor:color}" @mouseover="changeColor(color)" style="width: 50px;height: 50px;border-radius: 50%;float: right;padding-left: 5px"
+                v-for="color in
+               selectedProduct.colors"></p>
+    </div>
+    <div class="products" style="float: right;width: 25%;border: 1px solid black;background: lightgreen;height: 400px">
+        <img :src="image2" alt="">
+    </div>
+    <div class="product" style="clear: both;">
+
         <div class="product-image">
             <img :src="image" alt=""/>
         </div>
